@@ -4,6 +4,8 @@ from typing import Annotated
 import ollama
 import typer
 from dicttoxml import dicttoxml
+from langroid.agent.special import DocChatAgent, DocChatAgentConfig
+from langroid.language_models import OpenAIGPTConfig
 from rich import print
 from rich.console import Group
 from rich.panel import Panel
@@ -117,6 +119,22 @@ def test(file: Path, config: OptConfig = default_config):
     3. Completeness: [Evaluation + What’s missing or redundant]
     4. Overall Suggestions: [General feedback]
     """
+
+    doc_agent = DocChatAgent(
+        DocChatAgentConfig(
+            llm=OpenAIGPTConfig(chat_model="ollama/llama3.2:3b"),
+            doc_paths=[str(file)],
+            # vecdb=lr.vector_store.QdrantDBConfig(
+            #     collection_name="quick-start-chat-agent-docs",
+            #     replace_collection=True,
+            # ),
+        )
+    )
+
+    goal = doc_agent.answer_from_docs(
+        "What do you believe is the goal of this article and why?"
+    )
+    print(goal)
 
     response = ollama.chat(
         model="deepseek-r1:7b",

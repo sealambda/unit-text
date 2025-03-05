@@ -9,9 +9,11 @@ authors = [
 requires-python = ">=3.11"
 dependencies = [
     "dicttoxml>=1.7.16",
+    "langroid[doc-chat,hf-embeddings,weaviate]>=0.36.1",
     "ollama>=0.4.7",
-    "pydantic>=2.10.6",
-    "smolagents[openai]>=1.8.1",
+    "pydantic<3.0.0,>=1",
+    "python-magic>=0.4.27",
+    "sentence-transformers>=2.7.0",
     "tomlkit>=0.13.2",
     "typer>=0.15.1",
 ]
