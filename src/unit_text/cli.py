@@ -180,13 +180,7 @@ Reference specific parts of the text when making suggestions.
                     style="green",
                 ),
             ),
-            title=f"{title}"
-            " "
-            f"({
-                '[bold green]Passed[/]'
-                if evaluation.test_passed
-                else '[bold red]Failed[/]'
-            })",
+            title=f"{title} ({'[bold green]Passed[/]' if evaluation.test_passed else '[bold red]Failed[/]'})",
         )
 
     panel_group = Group(
