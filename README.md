@@ -85,7 +85,7 @@ The package also provides a FastAPI server for programmatic access:
 
 ```bash
 # Start the server
-uv run serve
+uv run unit-text-api
 ```
 
 The server exposes a `/test` endpoint that accepts POST requests with two files:
