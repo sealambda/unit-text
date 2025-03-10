@@ -79,6 +79,28 @@ unit-text ideate
 unit-text test <path-to-the-draft.md>
 ```
 
+### API
+
+The package also provides a FastAPI server for programmatic access:
+
+```bash
+# Start the server
+uv run serve
+```
+
+The server exposes a `/test` endpoint that accepts POST requests with two files:
+
+- `file`: Your draft text file
+- `config`: Your idea configuration JSON file
+
+Example using curl:
+
+```bash
+curl -X POST http://localhost:8000/test \
+  -F "file=@draft.md" \
+  -F "config=@unit-text.json"
+```
+
 ## 📝 Process
 
 The ideation phase is where you define your blog idea. It looks something like this:
