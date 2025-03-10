@@ -29,12 +29,17 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "dicttoxml>=1.7.16",
-    "fastapi[standard]>=0.115.11",
-    "ollama>=0.4.7",
-    "pydantic>=2.10.6",
     "typer>=0.15.1",
+    "unit-text-core",
+    "unit-text-api",
 ]
+
+[tool.uv.sources]
+unit-text-core = { workspace = true }
+unit-text-api = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/*"]
 
 # https://packaging.python.org/en/latest/specifications/well-known-project-urls/#well-known-labels
 [project.urls]
@@ -43,7 +48,7 @@ issues = "https://github.com/sealambda/unit-text/issues"
 
 [project.scripts]
 unit-text = "unit_text:app"
-serve = "unit_text.app:run"
+unit-text-api = "unit_text_api.app:run"
 
 [build-system]
 requires = ["hatchling"]
