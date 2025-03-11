@@ -791,14 +791,12 @@ version = "0.1.0"
 source = { editable = "packages/api" }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
-    { name = "python-multipart" },
     { name = "unit-text-core" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.11" },
-    { name = "python-multipart", specifier = ">=0.0.6" },
     { name = "unit-text-core", editable = "packages/core" },
 ]
 
