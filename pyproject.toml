@@ -29,6 +29,7 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
+    "fastapi[standard]>=0.115.11",
     "typer>=0.15.1",
     "unit-text-core",
     "unit-text-api",
@@ -49,6 +50,7 @@ issues = "https://github.com/sealambda/unit-text/issues"
 [project.scripts]
 unit-text = "unit_text:app"
 unit-text-api = "unit_text_api.app:run"
+unit-text-api-dev = "unit_text_api.app:dev"
 
 [build-system]
 requires = ["hatchling"]

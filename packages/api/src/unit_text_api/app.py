@@ -36,3 +36,14 @@ async def test(
 def run():
     """Start the FastAPI server with uvicorn."""
     uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
+def dev():
+    """Start the FastAPI server with uvicorn."""
+    uvicorn.run(
+        "unit_text_api.app:app",
+        host="127.0.0.1",
+        port=8000,
+        reload=True,
+        reload_dirs=["packages/api/src/unit_text_api"],
+    )
