@@ -5,7 +5,6 @@ description = "API package for unit-text"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.115.11",
-    "python-multipart>=0.0.6",
     "unit-text-core",
 ]
 
