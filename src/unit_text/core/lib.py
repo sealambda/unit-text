@@ -1,4 +1,4 @@
-import ollama
+import litellm
 from dicttoxml import dicttoxml
 
 from .models import IdeaModel, TestResult
@@ -17,8 +17,8 @@ def run_tests(draft: str, idea: IdeaModel) -> TestResult:
     {xml_body}
     """
 
-    response = ollama.chat(
-        model="deepseek-r1:7b",
+    response = litellm.completion(
+        model="ollama/deepseek-r1:7b",
         messages=[
             {
                 "role": "system",
@@ -64,11 +64,11 @@ Reference specific parts of the text when making suggestions.
             },
             {"role": "user", "content": prompt},
         ],
-        format=TestResult.model_json_schema(),
-        options=ollama.Options(
-            temperature=0,  # to ensure consistent results
-            num_ctx=8192,  # to ensure the entire text is processed
-        ),
+        response_format=TestResult.model_json_schema(),
+        temperature=0,  # to ensure consistent results
+        num_ctx=8192,  # to ensure the entire text is processed
     )
 
-    return TestResult.model_validate_json(response.message.content)
+    print(response)
+
+    return response.choices[0].message.json()

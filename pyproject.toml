@@ -41,7 +41,6 @@ requires-python = ">=3.11"
 dependencies = [
     "dicttoxml>=1.7.16",
     "litellm>=1.63.14",
-    "ollama>=0.4.7",
     "pydantic>=2.10.6",
     # CLI
     "typer>=0.15.1",
