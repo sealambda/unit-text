@@ -84,7 +84,13 @@ unit-text test <path-to-the-draft.md>
 The package also provides a FastAPI server for programmatic access:
 
 ```bash
-# Start the server
+# Start the development server
+uv run fastapi dev ./src/unit_text/api
+
+# Start the production server
+uv run fastapi run ./src/unit_text/api
+
+# or for convenience
 uv run unit-text-api
 ```
 

@@ -1,6 +1,6 @@
 """Main entry point for unit-text."""
 
-from unit_text.cli.app import app
+from .app import app
 
 if __name__ == "__main__":
-    app(prog_name="unit-text")
+    app(prog_name="unit-text-api")

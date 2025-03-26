@@ -5,7 +5,17 @@ description = "Unit tests for plain text"
 readme = "README.md"
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE"]
-keywords = ["cli", "ollama", "llm", "language", "unit", "test", "blog", "editor", "ai"]
+keywords = [
+    "cli",
+    "ollama",
+    "llm",
+    "language",
+    "unit",
+    "test",
+    "blog",
+    "editor",
+    "ai",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -29,39 +39,33 @@ authors = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "fastapi[standard]>=0.115.11",
+    "ollama>=0.4.7",
+    "pydantic>=2.10.6",
+    "dicttoxml>=1.7.16",
+
+    # CLI
     "typer>=0.15.1",
-    "unit-text-core",
-    "unit-text-api",
+    "rich",
+
+    # TODO should be optional?
+    # API
+    "fastapi[standard]>=0.115.11",
 ]
 
-[tool.uv.sources]
-unit-text-core = { workspace = true }
-unit-text-api = { workspace = true }
-
-[tool.uv.workspace]
-members = ["packages/*"]
-
-# https://packaging.python.org/en/latest/specifications/well-known-project-urls/#well-known-labels
 [project.urls]
 source = "https://github.com/sealambda/unit-text"
 issues = "https://github.com/sealambda/unit-text/issues"
 
 [project.scripts]
 unit-text = "unit_text:app"
-unit-text-api = "unit_text_api.app:run"
-unit-text-api-dev = "unit_text_api.app:dev"
+unit-text-api = "unit_text.api:run"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
-dev = [
-    "commitizen>=4.1.1",
-    "pre-commit>=4.1.0",
-    "ruff>=0.9.4",
-]
+dev = ["commitizen>=4.1.1", "pre-commit>=4.1.0", "ruff>=0.9.4"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
@@ -74,16 +78,10 @@ major_version_zero = true
 
 [tool.ruff.lint]
 select = [
-    # pycodestyle
-    "E",
-    # Pyflakes
-    "F",
-    # pyupgrade
-    "UP",
-    # flake8-bugbear
-    "B",
-    # flake8-simplify
-    "SIM",
-    # isort
-    "I",
+    "E",   # pycodestyle
+    "F",   # Pyflakes
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I",   # isort
 ]

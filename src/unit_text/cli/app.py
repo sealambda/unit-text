@@ -7,7 +7,8 @@ from rich.console import Group
 from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.prompt import Prompt
-from unit_text_core import Evaluation, IdeaModel, run_tests
+
+from unit_text.core import Evaluation, IdeaModel, run_tests
 
 app = typer.Typer(
     short_help="Unit tests for prose",
