@@ -1,3 +1,14 @@
+## v0.3.0 (2025-03-26)
+
+### Feat
+
+- implement json-based api
+- expose test command via api
+
+### Refactor
+
+- consolidate into one package
+
 ## v0.2.5 (2025-03-09)
 
 ### Fix

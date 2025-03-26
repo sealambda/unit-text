@@ -1,6 +1,6 @@
 [project]
 name = "unit-text"
-version = "0.2.5"
+version = "0.3.0"
 description = "Unit tests for plain text"
 readme = "README.md"
 license = "AGPL-3.0-or-later"
