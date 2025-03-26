@@ -48,6 +48,7 @@ dependencies = [
     # TODO should be optional?
     # API
     "fastapi[standard]>=0.115.11",
+    "openai>=1.68.2",
 ]
 
 [project.urls]

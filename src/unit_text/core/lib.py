@@ -1,5 +1,7 @@
-import litellm
+import os
+
 from dicttoxml import dicttoxml
+from openai import OpenAI
 
 from .models import IdeaModel, TestResult
 
@@ -17,8 +19,20 @@ def run_tests(draft: str, idea: IdeaModel) -> TestResult:
     {xml_body}
     """
 
-    response = litellm.completion(
-        model="ollama/deepseek-r1:7b",
+    OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+    assert OPENROUTER_API_KEY, "OPENROUTER_API_KEY is not set"
+
+    openai_client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=OPENROUTER_API_KEY,
+    )
+
+    model = "deepseek/deepseek-r1:free"
+    # model = "google/gemini-2.5-pro-exp-03-25:free"
+    # model = "deepseek/deepseek-r1-distill-llama-70b:free"
+
+    response = openai_client.beta.chat.completions.parse(
+        model=model,
         messages=[
             {
                 "role": "system",
@@ -60,15 +74,26 @@ to indicate if the content was good enough for that specific aspect.
 Keep your feedback constructive but honest.
 Focus on specific, actionable improvements rather than general observations.
 Reference specific parts of the text when making suggestions.
+
+Output in JSON format, according to the provided schema.
+Do not wrap the json codes in JSON markers
 """,
             },
             {"role": "user", "content": prompt},
         ],
-        response_format=TestResult.model_json_schema(),
+        response_format=TestResult,
+        extra_body={
+            "require_parameters": True,
+            "structured_output": True,
+        },
         temperature=0,  # to ensure consistent results
-        num_ctx=8192,  # to ensure the entire text is processed
+        extra_headers={
+            # For OpenRouter rankings
+            "HTTP-Referer": "https://unittext.com",
+            "X-Title": "UnitText",
+            "X-Model": model,
+        },
     )
 
-    print(response)
-
-    return response.choices[0].message.json()
+    print(response.choices[0])
+    return response.choices[0].message.parsed
