@@ -1,16 +1,10 @@
 version = 1
+revision = 1
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.12.4'",
     "python_full_version >= '3.12' and python_full_version < '3.12.4'",
     "python_full_version < '3.12'",
-]
-
-[manifest]
-members = [
-    "unit-text",
-    "unit-text-api",
-    "unit-text-core",
 ]
 
 [[package]]
@@ -757,10 +751,12 @@ name = "unit-text"
 version = "0.2.5"
 source = { editable = "." }
 dependencies = [
+    { name = "dicttoxml" },
     { name = "fastapi", extra = ["standard"] },
+    { name = "ollama" },
+    { name = "pydantic" },
+    { name = "rich" },
     { name = "typer" },
-    { name = "unit-text-api" },
-    { name = "unit-text-core" },
 ]
 
 [package.dev-dependencies]
@@ -772,10 +768,12 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "dicttoxml", specifier = ">=1.7.16" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.115.11" },
+    { name = "ollama", specifier = ">=0.4.7" },
+    { name = "pydantic", specifier = ">=2.10.6" },
+    { name = "rich" },
     { name = "typer", specifier = ">=0.15.1" },
-    { name = "unit-text-api", editable = "packages/api" },
-    { name = "unit-text-core", editable = "packages/core" },
 ]
 
 [package.metadata.requires-dev]
@@ -783,38 +781,6 @@ dev = [
     { name = "commitizen", specifier = ">=4.1.1" },
     { name = "pre-commit", specifier = ">=4.1.0" },
     { name = "ruff", specifier = ">=0.9.4" },
-]
-
-[[package]]
-name = "unit-text-api"
-version = "0.1.0"
-source = { editable = "packages/api" }
-dependencies = [
-    { name = "fastapi", extra = ["standard"] },
-    { name = "unit-text-core" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "fastapi", extras = ["standard"], specifier = ">=0.115.11" },
-    { name = "unit-text-core", editable = "packages/core" },
-]
-
-[[package]]
-name = "unit-text-core"
-version = "0.1.0"
-source = { editable = "packages/core" }
-dependencies = [
-    { name = "dicttoxml" },
-    { name = "ollama" },
-    { name = "pydantic" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "dicttoxml", specifier = ">=1.7.16" },
-    { name = "ollama", specifier = ">=0.4.7" },
-    { name = "pydantic", specifier = ">=2.10.6" },
 ]
 
 [[package]]
